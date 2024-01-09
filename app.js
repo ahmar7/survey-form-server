@@ -42,7 +42,6 @@ app.post("/submitSurvey", async (req, res) => {
       Value12,
       Value13,
     } = req.body;
-    console.log("req.body: ", req.body);
 
     let surveys = new surveyModel({
       email,
@@ -63,7 +62,6 @@ app.post("/submitSurvey", async (req, res) => {
       Value12,
       Value13,
     });
-    console.log(surveys);
     await surveys.save();
     res.status(200).send({ message: "Done", success: true });
   } catch (e) {
@@ -71,21 +69,47 @@ app.post("/submitSurvey", async (req, res) => {
       success: false,
       message: "Something went wrong",
     });
-    console.log(e);
   }
 });
 
-app.get("/deleteAllSubscribeNewsetter", async (req, res) => {
+app.get("/getAllSurveys", async (req, res) => {
+  let secret = req.query.secret;
+  let storedSecret = process.env.SECRET;
   try {
-    let deletes = await newsLetterEmail.deleteMany();
-    console.log(deletes);
-    res.status(200).send({ message: "Done", success: true });
+    if (!secret) {
+      res.status(400).send({ msg: "No secret key provided", success: false });
+      return;
+    }
+    if (secret != storedSecret) {
+      res.status(400).send({
+        msg: "Secret code is incorrect, please try again",
+        success: false,
+      });
+      return;
+    }
+    let allData = await surveyModel.find();
+
+    res.status(200).send({ msg: "Done", success: true, allData });
   } catch (e) {
     res.status(500).send({
       success: false,
-      message: "Something went wrong",
+      msg: "Something went wrong",
     });
-    console.log(e);
+  }
+});
+app.get("/seleteSurvey/:id", async (req, res) => {
+  let id = req.params.id;
+  try {
+    let allData = await surveyModel.findByIdAndDelete({ _id: id });
+
+    res
+      .status(200)
+      .send({ msg: "Deleted successfully", success: true, allData });
+  } catch (e) {
+    res.status(500).send({
+      success: false,
+      msg: "Something went wrong",
+    });
   }
 });
 
