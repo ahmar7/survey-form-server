@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-let surveySchema = new mongoose.Schema({
+let surveySharedSchema = new mongoose.Schema({
   Value1: { type: String },
   Value2: { type: String },
   Value3: { type: String },
@@ -13,7 +13,6 @@ let surveySchema = new mongoose.Schema({
   Value10: { type: String },
   Value11: { type: String },
   Value12: { type: String },
-  share: { type: Boolean, default: false },
   Value13: { type: String },
   email: { type: String, required: true },
   phone: { type: String, required: true },
@@ -25,5 +24,5 @@ let surveySchema = new mongoose.Schema({
   },
 });
 
-const Email = new mongoose.model("survey", surveySchema);
+const Email = new mongoose.model("surveyShared", surveySharedSchema);
 module.exports = Email;
