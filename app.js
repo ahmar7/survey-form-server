@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 let ALLOWED_ORIGINS = [
   "https://astonishing-mooncake-f200b2.netlify.app",
   "https://survey-form-ebon-rho.vercel.app",
-  "http://127.0.0.1:5501",
+  "http://127.0.0.1:5555",
 ];
 app.use((req, res, next) => {
   let origin = req.headers.origin;
