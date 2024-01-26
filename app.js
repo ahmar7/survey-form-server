@@ -6,11 +6,12 @@ const path = require("path");
 const dotnet = require("dotenv").config({
   path: path.resolve(__dirname, ".env"),
 });
+const twilio = require("twilio/lib/rest/Twilio");
 const surveyModel = require("./models/survey");
 const surveySharedModel = require("./models/surveyShared");
 const database = require("./db/db");
 app.use(bodyParser.urlencoded({ extended: false }));
-
+const fs = require("fs");
 // app.use(
 //   cors({
 //     origin: process.env.CORS,
@@ -40,6 +41,10 @@ app.use((req, res, next) => {
   );
   next();
 });
+// SMs ##############################################################################
+// Replace with your messaging library
+
+// SMs ##############################################################################
 // parse application/json
 app.use(bodyParser.json());
 const port = process.env.PORT || 5000;
@@ -58,6 +63,7 @@ app.post("/submitSurvey", async (req, res) => {
       Value4,
       Value5,
       Value6,
+      Value7,
       Value8,
       Value9,
       Value10,
@@ -77,6 +83,7 @@ app.post("/submitSurvey", async (req, res) => {
       Value4,
       Value5,
       Value6,
+      Value7,
       Value8,
       Value9,
       Value10,
