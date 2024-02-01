@@ -6,7 +6,7 @@ let surveySchema = new mongoose.Schema({
   Value3: { type: String },
   Value4: { type: String },
   Value5: { type: String },
-  Value6: { type: String },
+  Value6: [{ type: String }],
   Value7: { type: String },
   Value8: { type: String },
   Value9: { type: String },
