@@ -21,6 +21,9 @@ const fs = require("fs");
 let ALLOWED_ORIGINS = [
   "https://astonishing-mooncake-f200b2.netlify.app",
   "https://survey-form-ebon-rho.vercel.app",
+  "https://www.xn--mes-aides-nergtiques-k2be.fr",
+  "http://mes-aides-énergétiques.fr",
+  "http://www.mes-aides-énergétiques.fr",
   "http://127.0.0.1:5555",
 ];
 app.use((req, res, next) => {
